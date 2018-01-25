@@ -47,7 +47,6 @@ public class UsuariosResourceIT {
 
     @Test
     public void buscaTodoUsuarios() {
-
         Response response =
             RestAssured
                 .given()
@@ -83,7 +82,6 @@ public class UsuariosResourceIT {
 
     @Test
     public void atualizaUsuario() {
-
         AtualizarUsuarioRequest atualizarUsuarioRequest = new AtualizarUsuarioRequest();
         atualizarUsuarioRequest.setNome("Nome Atualizado");
 
@@ -101,7 +99,6 @@ public class UsuariosResourceIT {
 
     @Test
     public void deleteUsuario() {
-
         Response response =
                 RestAssured
                     .given()

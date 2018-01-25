@@ -19,13 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import matera.systems.cursoferias2018.api.domain.entity.UsuarioEntity;
+import matera.systems.cursoferias2018.api.domain.request.AtualizarUsuarioRequest;
 import matera.systems.cursoferias2018.api.domain.request.UsuarioRequest;
 import matera.systems.cursoferias2018.api.domain.response.UsuarioResponse;
 import matera.systems.cursoferias2018.api.services.UsuarioService;
 
 @RestController
 @RequestMapping(path = "/usuarios")
-public class CadastroUsuarios {
+public class CadastroUsuariosRS {
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -41,7 +42,7 @@ public class CadastroUsuarios {
 	}
 
 	@GetMapping(path = "/{id}", produces = "application/json")
-	public ResponseEntity<UsuarioResponse> listaUsuario(@PathVariable String id, @RequestBody UsuarioRequest usuarioRequest) {
+	public ResponseEntity<UsuarioResponse> listaUsuario(@PathVariable String id) {
 		final UsuarioEntity usuario = usuarioService.findById(UUID.fromString(id));
 		if (usuario == null) {
 			return ResponseEntity.notFound().build();
@@ -52,8 +53,14 @@ public class CadastroUsuarios {
 	}
 	
 	@PutMapping(path = "/{id}")
-	public ResponseEntity<Void> atualiza(@PathVariable String id) {
-		// TODO
+	public ResponseEntity<Void> atualiza(@PathVariable String id, @RequestBody AtualizarUsuarioRequest request) {
+		UsuarioEntity ue = usuarioService.findById(UUID.fromString(id));
+		if (ue == null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		ue.setNome(request.getNome());
+		
 		return ResponseEntity.ok().build();
 	}
 	
