@@ -1,7 +1,7 @@
 package matera.systems.cursoferias2018.api.resources;
 
 import matera.systems.cursoferias2018.api.domain.request.AtualizarUsuarioRequest;
-import matera.systems.cursoferias2018.api.domain.request.CriarUsuarioRequest;
+import matera.systems.cursoferias2018.api.domain.request.UsuarioRequest;
 import matera.systems.cursoferias2018.api.domain.response.UsuarioResponse;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -23,8 +23,7 @@ public class UsuariosResourceIT {
 
     @Test
     public void criarUsuario() {
-
-        CriarUsuarioRequest createRequest = new CriarUsuarioRequest();
+        UsuarioRequest createRequest = new UsuarioRequest();
         createRequest.setNome("John Doe");
         createRequest.setLogin("john.doe");
         createRequest.setEmail("john.doe@email.com");
@@ -43,7 +42,7 @@ public class UsuariosResourceIT {
         Assert.assertEquals(CREATED_HTTP_STATUS_CODE, response.getStatusCode());
 
         String location = response.getHeader(LOCATION_HEADER);
-        Assert.assertTrue(location.matches(LOCATION_PATTERN));
+        Assert.assertTrue(location.matches("/usuarios/" + UUID_REGEX));
     }
 
     @Test
@@ -53,7 +52,7 @@ public class UsuariosResourceIT {
             RestAssured
                 .given()
                     .header("Accept", "application/json")
-                    .get(USUARIOS_URL + "/usuarios")
+                    .get(USUARIOS_URL)
                 .thenReturn();
 
         UsuarioResponse[] usuarios = response.getBody().as(UsuarioResponse[].class);
@@ -64,16 +63,16 @@ public class UsuariosResourceIT {
 
     @Test
     public void buscarUsuarioPorId() {
-
-        Response response =
+        String idUsuario = "bc51c8bb-bad3-47e4-af0c-7f467148f23d";
+		Response response =
             RestAssured
                 .given()
                     .header("Accept", "application/json")
-                    .get(USUARIOS_URL + "/usuarios/idusuario")
+                    .get(USUARIOS_URL + "/" + idUsuario)
                 .thenReturn();
 
         UsuarioResponse usuario = response.getBody().as(UsuarioResponse.class);
-        Assert.assertEquals(UUID.fromString("bc51c8bb-bad3-47e4-af0c-7f467148f23d"), usuario.getUuid());
+        Assert.assertEquals(UUID.fromString(idUsuario), usuario.getUuid());
         Assert.assertEquals("Paulo Almeida", usuario.getNome());
         Assert.assertEquals("rochapaulo", usuario.getLogin());
         Assert.assertEquals("paulo.almeida@matera.com", usuario.getEmail());

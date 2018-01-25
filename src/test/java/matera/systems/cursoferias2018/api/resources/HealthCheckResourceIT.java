@@ -10,7 +10,6 @@ public class HealthCheckResourceIT {
 
     @Test
     public void run() {
-
         RestAssured
             .given()
                 .get("http://localhost:8080/health")

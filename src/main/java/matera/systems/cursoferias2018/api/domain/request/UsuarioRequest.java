@@ -1,13 +1,13 @@
-package matera.systems.cursoferias2018.api.domain.response;
+package matera.systems.cursoferias2018.api.domain.request;
 
 import java.util.UUID;
 
-public class UsuarioResponse {
-	
+import matera.systems.cursoferias2018.api.domain.entity.UsuarioEntity;
+
+public class UsuarioRequest {
+
 	private String nome;
 	
-	private UUID uuid;
-
 	private String login;
 	
 	private String email;
@@ -15,14 +15,6 @@ public class UsuarioResponse {
 	private String perfil;
 	
 	private String urlPhoto;
-
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
 
 	public String getLogin() {
 		return login;
@@ -62,6 +54,18 @@ public class UsuarioResponse {
 
 	public void setUrlPhoto(String urlPhoto) {
 		this.urlPhoto = urlPhoto;
+	}
+
+	public UsuarioEntity toUsuarioEntity() {
+		final UsuarioEntity usuarioEntity = new UsuarioEntity();
+		usuarioEntity.setNome(getNome());
+		usuarioEntity.setEmail(getEmail());
+		usuarioEntity.setLogin(getLogin());
+		usuarioEntity.setPerfil(getPerfil());
+		usuarioEntity.setUrlPhoto(getUrlPhoto());
+		usuarioEntity.setUuid(UUID.randomUUID());
+		
+		return usuarioEntity;
 	}
 	
 }
