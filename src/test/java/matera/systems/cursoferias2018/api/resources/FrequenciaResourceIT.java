@@ -27,7 +27,7 @@ public class FrequenciaResourceIT {
                         .header(CONTENT_TYPE_HEADER, "application/json")
                     .when()
                         .put(FREQUENCIA_URL + "/" + DisciplinasRepositoryStub.DISCIPLINA_1.toString()
-                                + "/"  +  UsuarioRepositoryStub.USUARIO_1.toString())
+                                + "/"  +  UsuarioRepositoryStub.USUARIO_1.toString() + "/?data=2018-12-11")
                     .thenReturn();
 
         Assert.assertEquals(NO_CONTENT_HTTP_STATUS_CODE, response.getStatusCode());
@@ -43,7 +43,7 @@ public class FrequenciaResourceIT {
                         .header(CONTENT_TYPE_HEADER, "application/json")
                     .when()
                         .delete(FREQUENCIA_URL + "/" + DisciplinasRepositoryStub.DISCIPLINA_1.toString()
-                                + "/"  +  UsuarioRepositoryStub.USUARIO_1.toString())
+                                + "/"  +  UsuarioRepositoryStub.USUARIO_1.toString() + "/?data=2018-12-11")
                     .thenReturn();
 
         Assert.assertEquals(NO_CONTENT_HTTP_STATUS_CODE, response.getStatusCode());

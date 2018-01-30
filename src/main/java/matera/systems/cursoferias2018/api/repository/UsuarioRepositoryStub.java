@@ -63,7 +63,7 @@ public class UsuarioRepositoryStub implements UsuarioRepository {
 
     @Override
     public void deletar(UUID uuid) {
-        data.remove(uuid);
+//        data.remove(uuid);
     }
 
     @Override
