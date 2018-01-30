@@ -28,7 +28,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             .secret("alunos")
             .scopes("read","write")
             .authorizedGrantTypes("password")
-        .accessTokenValiditySeconds(14400);
+//        .accessTokenValiditySeconds(14400);
+        .accessTokenValiditySeconds(9999999);
     }
 
     @Override
