@@ -16,7 +16,7 @@ import java.util.Base64;
 
 public class UsuariosResourceIT {
 
-    private static final String USUARIOS_URL = "http://localhost:8080/usuarios";
+    private static final String USUARIOS_URL = "/api/v1/usuarios";
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
     private static final String LOCATION_HEADER = "location";
     private static final int NO_CONTENT_HTTP_STATUS_CODE = 204;
@@ -35,7 +35,7 @@ public class UsuariosResourceIT {
         createRequest.setLogin("john.doe");
         createRequest.setEmail("john.doe@email.com");
         createRequest.setPerfil("ADMINISTRADOR");
-        createRequest.setUrlPhoto("http://pictures.pic/johndoe");
+        createRequest.setUrlFoto("http://pictures.pic/johndoe");
 
         Response response =
             RestAssured
@@ -85,7 +85,7 @@ public class UsuariosResourceIT {
 
         UsuarioResponse usuario = response.getBody().as(UsuarioResponse.class);
 
-        Assert.assertEquals(UsuarioRepositoryStub.USUARIO_2, usuario.getUuid());
+        Assert.assertEquals(UsuarioRepositoryStub.USUARIO_2, usuario.getId());
         Assert.assertEquals("Usuario Dois", usuario.getNome());
         Assert.assertEquals("usuario_2", usuario.getLogin());
         Assert.assertEquals("usuario_2@domain.com", usuario.getEmail());

@@ -17,9 +17,6 @@ import java.util.*;
 public class RelatorioService {
 
     @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
     private DisciplinaService disciplinaService;
 
     @Autowired
@@ -29,7 +26,6 @@ public class RelatorioService {
 
         RelatorioResponse relatorio = new RelatorioResponse();
 
-        List<RelatorioResponseEntry> entries = new ArrayList<>();
         for (UsuarioResponse aluno : disciplinaService.findUsuariosByDisciplinaID(disciplinaID)) {
 
             final Optional<DisciplinaResponse> disciplina = disciplinaService.findByID(disciplinaID);
@@ -41,7 +37,7 @@ public class RelatorioService {
                 SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMDD");
                 int totalAulas = Integer.parseInt(sdf.format(dataFim)) - Integer.parseInt(sdf.format(dataInicio));
 
-                List<String> presencas = frequenciaService.findFrequenciaByAlunoId(aluno.getUuid());
+                List<String> presencas = frequenciaService.findFrequenciaByAlunoId(aluno.getId());
                 RelatorioResponseEntry entry = new RelatorioResponseEntry();
 
                 entry.setUsuario(aluno);
@@ -61,9 +57,8 @@ public class RelatorioService {
 
         RelatorioResponse relatorio = new RelatorioResponse();
 
-        List<RelatorioResponseEntry> entries = new ArrayList<>();
         Optional<UsuarioResponse> aluno =
-                disciplinaService.findUsuariosByDisciplinaID(disciplinaID).stream().filter(_aluno -> _aluno.getUuid().equals(alunoID)).findFirst();
+                disciplinaService.findUsuariosByDisciplinaID(disciplinaID).stream().filter(_aluno -> _aluno.getId().equals(alunoID)).findFirst();
 
         if (aluno.isPresent()) {
 
@@ -77,7 +72,7 @@ public class RelatorioService {
                 SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMDD");
                 int totalAulas = Integer.parseInt(sdf.format(dataFim)) - Integer.parseInt(sdf.format(dataInicio));
 
-                List<String> presencas = frequenciaService.findFrequenciaByAlunoId(aluno.get().getUuid());
+                List<String> presencas = frequenciaService.findFrequenciaByAlunoId(aluno.get().getId());
                 RelatorioResponseEntry entry = new RelatorioResponseEntry();
 
                 entry.setUsuario(aluno.get());

@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/usuarios")
+@RequestMapping(path = "/api/v1/usuarios")
 public class UsuariosRS {
 
     @Autowired

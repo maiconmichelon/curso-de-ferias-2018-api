@@ -7,7 +7,7 @@ public class AtualizarUsuarioRequest {
     private String email;
     private String senha;
     private String perfil;
-    private String urlPhoto;
+    private String urlFoto;
 
     public String getNome() {
         return nome;
@@ -49,12 +49,12 @@ public class AtualizarUsuarioRequest {
         this.perfil = perfil;
     }
 
-    public String getUrlPhoto() {
-        return urlPhoto;
+    public String getUrlFoto() {
+        return urlFoto;
     }
 
-    public void setUrlPhoto(String urlPhoto) {
-        this.urlPhoto = urlPhoto;
+    public void setUrlFoto(String urlPhoto) {
+        this.urlFoto = urlPhoto;
     }
 
 }

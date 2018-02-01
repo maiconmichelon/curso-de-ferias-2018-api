@@ -22,7 +22,7 @@ import matera.systems.cursoferias2018.api.domain.response.UsuarioResponse;
 import matera.systems.cursoferias2018.api.services.DisciplinaService;
 
 @RestController
-@RequestMapping(path = "/disciplinas")
+@RequestMapping(path = "/api/v1/disciplinas")
 public class DisciplinasRS {
 
     @Autowired

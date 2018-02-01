@@ -37,7 +37,7 @@ public class UsuarioService {
         entity.setPerfil(request.getPerfil());
         entity.setLogin(request.getLogin());
         entity.setSenha(request.getSenha());
-        entity.setUrlPhoto(request.getUrlPhoto());
+        entity.setUrlPhoto(request.getUrlFoto());
 
         return repository.criar(entity);
     }
@@ -85,8 +85,8 @@ public class UsuarioService {
                 update.setPerfil(request.getPerfil());
             }
 
-            if (request.getUrlPhoto() != null) {
-                update.setUrlPhoto(request.getUrlPhoto());
+            if (request.getUrlFoto() != null) {
+                update.setUrlPhoto(request.getUrlFoto());
             }
 
             repository.atualizar(update);
@@ -120,7 +120,7 @@ public class UsuarioService {
 
     private Function<UsuarioEntity, UsuarioResponse> toResponse = (entity) -> {
         UsuarioResponse response = new UsuarioResponse();
-        response.setUuid(entity.getUuid());
+        response.setId(entity.getUuid());
         response.setNome(entity.getNome());
         response.setLogin(entity.getLogin());
         response.setEmail(entity.getEmail());

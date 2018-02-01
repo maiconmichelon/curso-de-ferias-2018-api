@@ -1,6 +1,7 @@
 package matera.systems.cursoferias2018.api.services;
 
 import matera.systems.cursoferias2018.api.domain.entity.DisciplinaEntity;
+import matera.systems.cursoferias2018.api.domain.entity.UsuarioEntity;
 import matera.systems.cursoferias2018.api.domain.request.AtualizarDisciplinaRequest;
 import matera.systems.cursoferias2018.api.domain.request.CriarDisciplinaRequest;
 import matera.systems.cursoferias2018.api.domain.response.DisciplinaResponse;
@@ -122,12 +123,17 @@ public class DisciplinaService {
     }
 
     private Function<DisciplinaEntity, DisciplinaResponse> toResponse = (entity) -> {
-        DisciplinaResponse response = new DisciplinaResponse();
+    	DisciplinaResponse response = new DisciplinaResponse();
         response.setId(entity.getId());
         response.setDescricao(entity.getDescricao());
         response.setSegmento(entity.getSegmento());
-        response.setUsuarios(entity.getUsuarios());
-        response.setDataInicio(entity.getDataInicio());
+
+        List<UsuarioEntity> usuarios = entity.getUsuarios();
+        if (usuarios != null) {
+        	response.setProfessores(usuarios.stream().map(UsuarioEntity::getUuid).map(UUID::toString).collect(Collectors.toList()));
+        }
+        
+		response.setDataInicio(entity.getDataInicio());
         response.setDataTermino(entity.getDataTermino());
         response.setUrlLogo(entity.getUrlLogo());
         return response;

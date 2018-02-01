@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/relatorio")
+@RequestMapping(path = "/api/v1/relatorio")
 public class RelatorioRS {
 
     @Autowired

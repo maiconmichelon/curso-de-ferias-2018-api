@@ -1,7 +1,5 @@
 package matera.systems.cursoferias2018.api.domain.response;
 
-import matera.systems.cursoferias2018.api.domain.entity.UsuarioEntity;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -9,7 +7,7 @@ public class DisciplinaResponse {
 
     private UUID id;
     private String descricao;
-    private List<UsuarioEntity> usuarios;
+    private List<String> professores;
     private String dataInicio;
     private String dataTermino;
     private String segmento;
@@ -31,13 +29,9 @@ public class DisciplinaResponse {
         this.descricao = descricao;
     }
 
-    public List<UsuarioEntity> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<UsuarioEntity> usuarios) {
-        this.usuarios = usuarios;
-    }
+    public List<String> getProfessores() {
+		return professores;
+	}
 
     public String getDataInicio() {
         return dataInicio;
@@ -70,4 +64,9 @@ public class DisciplinaResponse {
     public void setUrlLogo(String urlLogo) {
         this.urlLogo = urlLogo;
     }
+    
+    public void setProfessores(List<String> professores) {
+		this.professores = professores;
+	}
+    
 }

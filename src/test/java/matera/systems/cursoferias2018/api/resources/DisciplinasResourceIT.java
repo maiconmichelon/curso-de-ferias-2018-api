@@ -18,7 +18,7 @@ import java.util.Base64;
 
 public class DisciplinasResourceIT {
 
-    static final String DISCIPLINAS_URL = "/disciplinas";
+    static final String DISCIPLINAS_URL = "/api/v1/disciplinas";
     static final String ALUNOS = "alunos";
     static final String CONTENT_TYPE_HEADER = "Content-Type";
     static final String LOCATION_HEADER = "location";
